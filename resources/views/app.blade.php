@@ -24,11 +24,28 @@
     </style>
 </head>
 
-<body class="antialiased">
+<body class="antialiased">    
     <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="container-md">
+            <main class="py-4">
+                @yield('content')
+            </main>
+        </div>
     </div>
+
+    @if(session('notification'))
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                <div class="toast-header">
+                    <strong class="me-auto">Aviso</strong>
+                    <small class="text-muted">Agora</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{ session('notification') }}
+                </div>
+            </div>
+        </div>
+    @endif
 </body>
 </html>

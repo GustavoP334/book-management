@@ -20,7 +20,7 @@ class AutoresSeeder extends Seeder
             ['nome' => 'Rachel de Queiroz', 'estado_id' => 'Ceará'],
             ['nome' => 'Lygia Fagundes Telles', 'estado_id' => 'São Paulo'],
             ['nome' => 'Nelson Rodrigues', 'estado_id' => 'Rio de Janeiro'],
-            ['nome' => 'Clarice Lispector', 'estado_id' => 'Paraíba']
+            ['nome' => 'Manuel Bandeira', 'estado_id' => 'PE']
         ];
 
         foreach ($autores as $autor) {
