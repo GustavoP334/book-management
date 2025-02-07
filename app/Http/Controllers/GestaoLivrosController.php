@@ -24,7 +24,34 @@ class GestaoLivrosController extends Controller
 
     public function registraLivro(Request $request)
     {
-        $response = $this->gestaoLivrosService->registraLivro($request->input('title'), $request->input('descricao'), $request->input('autor'), $request->input('data_publicacao'));
+        $response = $this->gestaoLivrosService->registraLivro($request->input('title'),
+         $request->input('descricao'),
+         $request->input('autor'),
+         $request->input('data_publicacao')
+        );
+
+        $this->makeMessage($request, $response);
+
+        return redirect()->back();
+    }
+
+    public function deletaLivro(Request $request, $id)
+    {
+        $response = $this->gestaoLivrosService->deletaLivro($id);
+
+        $this->makeMessage($request, $response);
+
+        return redirect()->back();
+    }
+
+    public function editarLivro(Request $request)
+    {
+        $response = $this->gestaoLivrosService->editarLivro($request->input('id'),
+         $request->input('title'),
+          $request->input('descricao'),
+           $request->input('autor'),
+           $request->input('data_publicacao')
+        );
 
         $this->makeMessage($request, $response);
 

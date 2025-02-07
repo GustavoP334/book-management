@@ -42,4 +42,34 @@ class GestaoLivrosService
 
         return $response;
     }
+
+    public function deletaLivro($id)
+    {
+        try {
+            LivrosModel::destroy($id);
+
+            return 'Livro deletado com sucesso.';
+        } catch (\Throwable $th) {
+            return 'Erro ao deletar livro.';
+        }
+    }
+
+    public function editarLivro($id, $titulo, $descricao, $autor, $dataPublicacao)
+    {
+        try {
+            LivrosModel::updateOrCreate(
+                ['id' => $id],
+                [
+                    'titulo' => $titulo,
+                    'autor_id' => $autor,
+                    'descricao' => $descricao,
+                    'data_publicacao' => $dataPublicacao
+                ]
+            );
+
+            return 'Livro atualizado com sucesso.';
+        } catch (\Throwable $th) {
+            return 'Erro ao atualizar livro.';
+        }
+    }
 }
