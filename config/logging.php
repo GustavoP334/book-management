@@ -65,6 +65,18 @@ return [
             'replace_placeholders' => true,
         ],
 
+        'clean_logs' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/clean_logs.log'),
+            'level' => 'info',
+        ],
+
+        'database' => [
+            'driver' => 'monolog',
+            'handler' => App\Logging\DatabaseLogger::class,
+            'level' => 'debug',
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
