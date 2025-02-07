@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
         var button = event.relatedTarget;
         var values = JSON.parse(button.getAttribute('data-bs-values'))
 
+        const url = new URL(livroModal.querySelector("#imgCapa").src);
+        const caminhoRelativo = url.pathname;
+
+        livroModal.querySelector("#imgCapa").src = '/'+caminhoRelativo.split("/")[1]+'/'+values['autor_id']+'/'+values['id'];
         livroModal.querySelector("#id").value = values['id'];
         livroModal.querySelector("#title").value = values['titulo'];
         livroModal.querySelector("#descricao").value = values['descricao'];

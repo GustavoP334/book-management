@@ -24,10 +24,15 @@ class GestaoLivrosController extends Controller
 
     public function registraLivro(Request $request)
     {
+        $request->validate([
+            'capa' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
         $response = $this->gestaoLivrosService->registraLivro($request->input('title'),
          $request->input('descricao'),
          $request->input('autor'),
-         $request->input('data_publicacao')
+         $request->input('data_publicacao'),
+         $request->file('capa')
         );
 
         $this->makeMessage($request, $response);
@@ -46,15 +51,25 @@ class GestaoLivrosController extends Controller
 
     public function editarLivro(Request $request)
     {
+        $request->validate([
+            'capa' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
         $response = $this->gestaoLivrosService->editarLivro($request->input('id'),
          $request->input('title'),
           $request->input('descricao'),
            $request->input('autor'),
-           $request->input('data_publicacao')
+           $request->input('data_publicacao'),
+           $request->file('capa')
         );
 
         $this->makeMessage($request, $response);
 
         return redirect()->back();
+    }
+    
+    public function exibirImagem($idAutor, $idLivro)
+    {
+        $this->gestaoLivrosService->exibirImagem($idAutor, $idLivro);
     }
 }

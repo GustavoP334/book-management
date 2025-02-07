@@ -12,7 +12,7 @@
     </button>
 
     @component('layouts.modal', ['id' => 'livro', 'title' => 'Registrar Livros'])
-        <form method="POST" action="{{ route('registra-livros') }}">
+        <form method="POST" action="{{ route('registra-livros') }}" enctype="multipart/form-data">
             @csrf
             <div class="modal-body">
                 <div class="form-floating mb-2">
@@ -33,6 +33,9 @@
                     <input type="date" class="form-control" name="data_publicacao" id="data_publicacao" placeholder="Data" max="{{ date('Y-m-d') }}" required>
                     <label for="data_publicacao">Data publicação</label>
                 </div>
+                <div class="input-group mb-4">
+                    <input type="file" class="form-control" name="capa" accept="image/png, image/jpeg" required>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
@@ -42,11 +45,14 @@
     @endcomponent
     
     @component('layouts.modal', ['id' => 'edita-livro', 'title' => 'Editar Livros'])
-        <form method="POST" action="{{ route('editar-livro') }}">
+        <form method="POST" action="{{ route('editar-livro') }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="modal-body">
                 <input type="hidden" class="form-control" id="id" name="id" required>
+                <div class="d-flex justify-content-center mb-2">
+                    <img src="{{ route('imagem.show', ['idAutor' => 0, 'idLivro' => 0]) }}" style="object-fit: fill; width: 200px; height: 200px;" id="imgCapa" alt="Imagem">
+                </div>
                 <div class="form-floating mb-2">
                     <input type="text" class="form-control" name="title" id="title" placeholder="Título" maxlength="191" required>
                     <label for="title">Título</label>
@@ -64,6 +70,9 @@
                 <div class="form-floating mb-2">
                     <input type="date" class="form-control" name="data_publicacao" id="data_publicacao" placeholder="Data" max="{{ date('Y-m-d') }}" required>
                     <label for="data_publicacao">Data publicação</label>
+                </div>
+                <div class="input-group mb-4">
+                    <input type="file" class="form-control" name="capa" accept="image/png, image/jpeg" required>
                 </div>
             </div>
             <div class="modal-footer">

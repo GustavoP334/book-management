@@ -10,3 +10,5 @@ Route::post('/registra-livros', [GestaoLivrosController::class, 'registraLivro']
 Route::delete('/deleta-livro/{id}', [GestaoLivrosController::class, 'deletaLivro'])->name('deleta-livro');
 
 Route::put('/editar-livro', [GestaoLivrosController::class, 'editarLivro'])->name('editar-livro');
+
+Route::get('/imagem/{idAutor}/{idLivro}', [GestaoLivrosController::class, 'exibirImagem'])->name('imagem.show');
